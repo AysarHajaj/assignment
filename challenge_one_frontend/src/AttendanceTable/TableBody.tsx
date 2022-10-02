@@ -2,9 +2,7 @@ import React from 'react';
 import Employee from '../Interfaces/Employee';
 import Schedule from '../Interfaces/Schedule';
 
-function TableBody({data}: {data: Array<Employee>}) {
-  
-  const getScheduleCells = (schedule: Schedule) => <React.Fragment key={schedule.id}>
+const getScheduleCells = (schedule: Schedule) => <React.Fragment key={schedule.id}>
   <td>{schedule.shift.name}</td>
   <td>{schedule.shift.start_time}</td>
   <td>{schedule.shift.end_time}</td>
@@ -20,6 +18,8 @@ const getEmployeeSchedules = (schedules: Schedule[], fromIndex: number) =>{
   }
   return result;
 }
+
+function TableBody({data}: {data: Array<Employee>}) {
 
   return (
     <div></div>

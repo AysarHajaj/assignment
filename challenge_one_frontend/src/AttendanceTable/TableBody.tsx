@@ -13,6 +13,14 @@ function TableBody({data}: {data: Array<Employee>}) {
   <td>{schedule.attendance.working_hours}</td>
 </React.Fragment>
 
+const getEmployeeSchedules = (schedules: Schedule[], fromIndex: number) =>{
+  const result = [];
+  for(let index= fromIndex; index < schedules.length; index++){
+    result.push(<tr key={index}>{getScheduleCells(schedules[index])}</tr>);
+  }
+  return result;
+}
+
   return (
     <div></div>
   );

@@ -2,7 +2,8 @@
 
 namespace App\Services;
 
-use excel;
+use App\Imports\ImportAttendance;
+use Excel;
 
 
 class AttendanceService
@@ -27,7 +28,7 @@ class AttendanceService
             return true;
         } else {
             //no file was uploaded
-            throw new \Exception('No file was uploaded', Response::HTTP_BAD_REQUEST);
+            throw new \Exception('No file was uploaded');
         }
     }
 

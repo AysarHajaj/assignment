@@ -20,9 +20,26 @@ const getEmployeeSchedules = (schedules: Schedule[], fromIndex: number) =>{
 }
 
 function TableBody({data}: {data: Array<Employee>}) {
-
+  
   return (
-    <div></div>
+    <tbody>
+      {data.map((employee) => {
+        return (
+          <React.Fragment key={employee.employee_id}>
+            <tr key={employee.employee_id}>
+              <td rowSpan={employee.schedules.length}>
+                {employee.employee_name}
+              </td>
+              {employee.schedules.length && getScheduleCells(employee.schedules[0])}
+              <td rowSpan={employee.schedules.length}>
+                {employee.total_working_hours}
+              </td>
+            </tr>
+          {employee.schedules.length > 1 && getEmployeeSchedules(employee.schedules, 1)}
+          </React.Fragment>
+        )
+      })}
+    </tbody>
   );
 }
 

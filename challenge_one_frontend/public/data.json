@@ -1,0 +1,63 @@
+[
+    {
+        "employee_id": 1,
+        "employee_name": "ahmad",
+        "total_working_hours": 22,
+        "schedules": [
+            {
+                "id": 1,
+                "shift": {
+                    "id": 1,
+                    "name": "am",
+                    "start_time": "8:00",
+                    "end_time": "14:00"
+                },
+                "attendance": {
+                    "id": 1,
+                    "check_in": "9:00",
+                    "check_out": "14:00",
+                    "working_hours": 13
+
+                }
+            }
+        ]
+    },
+    {
+        "employee_id": 2,
+        "employee_name": "aysar",
+        "total_working_hours": 35,
+        "schedules": [
+            {
+                "id": 2,
+                "shift": {
+                    "id": 1,
+                    "name": "am",
+                    "start_time": "8:00",
+                    "end_time": "14:00"
+                },
+                "attendance": {
+                    "id": 2,
+                    "check_in": "8:00",
+                    "check_out": "13:00",
+                    "working_hours": 11
+
+                }
+            },
+            {
+                "id": 3,
+                "shift": {
+                    "id": 2,
+                    "name": "pm",
+                    "start_time": "14:00",
+                    "end_time": "22:00"
+                },
+                "attendance": {
+                    "id": 3,
+                    "check_in": "14:00",
+                    "check_out": "22:00",
+                    "working_hours": 10
+                }
+            }
+        ]
+    }
+]

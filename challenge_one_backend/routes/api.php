@@ -14,6 +14,5 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::get('/employees_data', [AttendanceController::class, 'getEmployeesData']);
+Route::post('/upload_content', [AttendanceController::class, 'uploadContent']);

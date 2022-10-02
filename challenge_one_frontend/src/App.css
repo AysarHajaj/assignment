@@ -2,6 +2,26 @@
   text-align: center;
 }
 
+td {
+  border-left: 1px solid grey;
+  border-bottom: 1px solid grey;
+  height: 30px;
+}
+
+table {
+  margin: 50px auto;
+  border-top: 1px solid grey;
+  border-right: 1px solid grey;
+  border-collapse: collapse;
+  width: 80%;
+}
+
+thead tr{
+  border: 1px solid grey;
+  background-color: black;
+  color: white;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;

@@ -18,4 +18,9 @@ class AttendanceController extends Controller
 
         return $this->service->uploadContent($file);
     }
+
+    public function getEmployeesData()
+    {
+        return $this->service->getEmployeesData();
+    }
 }

@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Imports\ImportAttendance;
+use App\Models\Employee;
 use Excel;
 
 
@@ -44,5 +45,65 @@ class AttendanceService
         } else {
             throw new \Exception('Invalid file extension'); //415 error
         }
+    }
+
+    public function getEmployeesData()
+    {
+        $employees = Employee::with([
+            "schedules" => function ($q) {
+                $q->with([
+                    "shift",
+                    "attendance"
+                ]);
+            }
+        ])->get();
+
+        $result = [];
+
+        foreach ($employees as $employee) {
+            $employeeData = [
+                "employee_id" => $employee->id,
+                "employee_name" => $employee->name,
+                "total_working_hours" => "N/A",
+                "schedules" => []
+            ];
+            $totalWorkingHours = 0;
+            $totalWorkingHoursApplicable = true;
+            foreach ($employee->schedules as $schedule) {
+                $workingHours = "N/A";
+                if ($schedule->attendance && $schedule->attendance->check_in && $schedule->attendance->check_out) {
+                    $workingHours = (strtotime($schedule->attendance->check_out) - strtotime($schedule->attendance->check_in)) / (60 * 60);
+                } else {
+                    $totalWorkingHoursApplicable = false;
+                }
+
+                $scheduleData = [
+                    "id" => $schedule->id,
+                    "shift" => [
+                        "id" => $schedule->shift->id,
+                        "name" => $schedule->shift->name,
+                        "start_time" => $schedule->shift->start_at,
+                        "end_time" => $schedule->shift->end_at
+                    ],
+                    "attendance" => [
+                        "id" => $schedule->attendance ? $schedule->attendance->id : null,
+                        "check_in" =>  $schedule->attendance ? $schedule->attendance->check_in : null,
+                        "check_out" =>  $schedule->attendance ? $schedule->attendance->check_out : null,
+                        "working_hours" => $workingHours
+                    ]
+                ];
+                if ($workingHours != "N/A") {
+                    $totalWorkingHours += $workingHours;
+                }
+                $employeeData["schedules"][] = $scheduleData;
+            }
+            if ($totalWorkingHoursApplicable) {
+                $employeeData["total_working_hours"] = $totalWorkingHours;
+            }
+
+            $result[] = $employeeData;
+        }
+
+        return $result;
     }
 }

@@ -39,10 +39,10 @@ class AttendanceService
         if (in_array(strtolower($extension), $valid_extension)) {
             if ($fileSize <= $maxFileSize) {
             } else {
-                throw new \Exception('No file was uploaded', Response::HTTP_REQUEST_ENTITY_TOO_LARGE); //413 error
+                throw new \Exception('No file was uploaded'); //413 error
             }
         } else {
-            throw new \Exception('Invalid file extension', Response::HTTP_UNSUPPORTED_MEDIA_TYPE); //415 error
+            throw new \Exception('Invalid file extension'); //415 error
         }
     }
 }

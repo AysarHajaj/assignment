@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ChallengeFourController;
 use App\Http\Controllers\ChallengeTwoController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -20,3 +21,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::post('/get_redundant_data', [ChallengeTwoController::class, "getRedundantNumbers"]);
+Route::post('/get_group_by_company_name', [ChallengeFourController::class, "groupByCompanyName"]);
